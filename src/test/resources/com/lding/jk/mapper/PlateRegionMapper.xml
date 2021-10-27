@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lding.jk.mapper.PlateRegionMapper" >
+  <resultMap id="BaseResultMap" type="com.lding.jk.pojo.po.PlateRegion" >
+    <id column="id" property="id" jdbcType="SMALLINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="parent_id" property="parentId" jdbcType="SMALLINT" />
+    <result column="plate" property="plate" jdbcType="CHAR" />
+    <result column="pinyin" property="pinyin" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short" >
+    delete from plate_region
+    where id = #{id,jdbcType=SMALLINT}
+  </delete>
+  <insert id="insert" parameterType="com.lding.jk.pojo.po.PlateRegion" >
+    insert into plate_region (id, name, parent_id, 
+      plate, pinyin)
+    values (#{id,jdbcType=SMALLINT}, #{name,jdbcType=VARCHAR}, #{parentId,jdbcType=SMALLINT}, 
+      #{plate,jdbcType=CHAR}, #{pinyin,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lding.jk.pojo.po.PlateRegion" >
+    update plate_region
+    set name = #{name,jdbcType=VARCHAR},
+      parent_id = #{parentId,jdbcType=SMALLINT},
+      plate = #{plate,jdbcType=CHAR},
+      pinyin = #{pinyin,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=SMALLINT}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Short" >
+    select id, name, parent_id, plate, pinyin
+    from plate_region
+    where id = #{id,jdbcType=SMALLINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, name, parent_id, plate, pinyin
+    from plate_region
+  </select>
+</mapper>

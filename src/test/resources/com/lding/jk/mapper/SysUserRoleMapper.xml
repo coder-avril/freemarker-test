@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lding.jk.mapper.SysUserRoleMapper" >
+  <resultMap id="BaseResultMap" type="com.lding.jk.pojo.po.SysUserRole" >
+    <id column="user_id" property="userId" jdbcType="SMALLINT" />
+    <id column="role_id" property="roleId" jdbcType="TINYINT" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="map" >
+    delete from sys_user_role
+    where user_id = #{userId,jdbcType=SMALLINT}
+      and role_id = #{roleId,jdbcType=TINYINT}
+  </delete>
+  <insert id="insert" parameterType="com.lding.jk.pojo.po.SysUserRole" >
+    insert into sys_user_role (user_id, role_id)
+    values (#{userId,jdbcType=SMALLINT}, #{roleId,jdbcType=TINYINT})
+  </insert>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select user_id, role_id
+    from sys_user_role
+  </select>
+</mapper>

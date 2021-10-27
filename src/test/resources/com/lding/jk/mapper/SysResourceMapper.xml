@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lding.jk.mapper.SysResourceMapper" >
+  <resultMap id="BaseResultMap" type="com.lding.jk.pojo.po.SysResource" >
+    <id column="id" property="id" jdbcType="TINYINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="uri" property="uri" jdbcType="VARCHAR" />
+    <result column="permission" property="permission" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="TINYINT" />
+    <result column="icon" property="icon" jdbcType="VARCHAR" />
+    <result column="sn" property="sn" jdbcType="TINYINT" />
+    <result column="parent_id" property="parentId" jdbcType="TINYINT" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Byte" >
+    delete from sys_resource
+    where id = #{id,jdbcType=TINYINT}
+  </delete>
+  <insert id="insert" parameterType="com.lding.jk.pojo.po.SysResource" >
+    insert into sys_resource (id, name, uri, 
+      permission, type, icon, 
+      sn, parent_id)
+    values (#{id,jdbcType=TINYINT}, #{name,jdbcType=VARCHAR}, #{uri,jdbcType=VARCHAR}, 
+      #{permission,jdbcType=VARCHAR}, #{type,jdbcType=TINYINT}, #{icon,jdbcType=VARCHAR}, 
+      #{sn,jdbcType=TINYINT}, #{parentId,jdbcType=TINYINT})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lding.jk.pojo.po.SysResource" >
+    update sys_resource
+    set name = #{name,jdbcType=VARCHAR},
+      uri = #{uri,jdbcType=VARCHAR},
+      permission = #{permission,jdbcType=VARCHAR},
+      type = #{type,jdbcType=TINYINT},
+      icon = #{icon,jdbcType=VARCHAR},
+      sn = #{sn,jdbcType=TINYINT},
+      parent_id = #{parentId,jdbcType=TINYINT}
+    where id = #{id,jdbcType=TINYINT}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Byte" >
+    select id, name, uri, permission, type, icon, sn, parent_id
+    from sys_resource
+    where id = #{id,jdbcType=TINYINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, name, uri, permission, type, icon, sn, parent_id
+    from sys_resource
+  </select>
+</mapper>

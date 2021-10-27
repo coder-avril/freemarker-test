@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lding.jk.mapper.SysUserMapper" >
+  <resultMap id="BaseResultMap" type="com.lding.jk.pojo.po.SysUser" >
+    <id column="id" property="id" jdbcType="SMALLINT" />
+    <result column="nickname" property="nickname" jdbcType="VARCHAR" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="CHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="login_time" property="loginTime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short" >
+    delete from sys_user
+    where id = #{id,jdbcType=SMALLINT}
+  </delete>
+  <insert id="insert" parameterType="com.lding.jk.pojo.po.SysUser" >
+    insert into sys_user (id, nickname, username, 
+      password, create_time, login_time, 
+      status)
+    values (#{id,jdbcType=SMALLINT}, #{nickname,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
+      #{password,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, #{loginTime,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=TINYINT})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lding.jk.pojo.po.SysUser" >
+    update sys_user
+    set nickname = #{nickname,jdbcType=VARCHAR},
+      username = #{username,jdbcType=VARCHAR},
+      password = #{password,jdbcType=CHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      login_time = #{loginTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=TINYINT}
+    where id = #{id,jdbcType=SMALLINT}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Short" >
+    select id, nickname, username, password, create_time, login_time, status
+    from sys_user
+    where id = #{id,jdbcType=SMALLINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, nickname, username, password, create_time, login_time, status
+    from sys_user
+  </select>
+</mapper>

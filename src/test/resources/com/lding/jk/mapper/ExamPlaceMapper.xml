@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lding.jk.mapper.ExamPlaceMapper" >
+  <resultMap id="BaseResultMap" type="com.lding.jk.pojo.po.ExamPlace" >
+    <id column="id" property="id" jdbcType="SMALLINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="province_id" property="provinceId" jdbcType="SMALLINT" />
+    <result column="city_id" property="cityId" jdbcType="SMALLINT" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="latitude" property="latitude" jdbcType="DECIMAL" />
+    <result column="longitude" property="longitude" jdbcType="DECIMAL" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short" >
+    delete from exam_place
+    where id = #{id,jdbcType=SMALLINT}
+  </delete>
+  <insert id="insert" parameterType="com.lding.jk.pojo.po.ExamPlace" >
+    insert into exam_place (id, name, province_id, 
+      city_id, address, latitude, 
+      longitude)
+    values (#{id,jdbcType=SMALLINT}, #{name,jdbcType=VARCHAR}, #{provinceId,jdbcType=SMALLINT}, 
+      #{cityId,jdbcType=SMALLINT}, #{address,jdbcType=VARCHAR}, #{latitude,jdbcType=DECIMAL}, 
+      #{longitude,jdbcType=DECIMAL})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lding.jk.pojo.po.ExamPlace" >
+    update exam_place
+    set name = #{name,jdbcType=VARCHAR},
+      province_id = #{provinceId,jdbcType=SMALLINT},
+      city_id = #{cityId,jdbcType=SMALLINT},
+      address = #{address,jdbcType=VARCHAR},
+      latitude = #{latitude,jdbcType=DECIMAL},
+      longitude = #{longitude,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=SMALLINT}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Short" >
+    select id, name, province_id, city_id, address, latitude, longitude
+    from exam_place
+    where id = #{id,jdbcType=SMALLINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, name, province_id, city_id, address, latitude, longitude
+    from exam_place
+  </select>
+</mapper>

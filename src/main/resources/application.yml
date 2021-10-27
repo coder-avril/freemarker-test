@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    username: root
+    password: roomysqld
+    url: jdbc:mysql://localhost:3306/jiakao?serverTimezone=GMT%2B9
+    driver-class-name: com.mysql.cj.jdbc.Driver
+mybatis-plus:
+  # 给领域类型设置别名
+  type-aliases-package: com.lding.jk.pojo
+
+logging:
+  level:
+    # 给mapper层（持久化层）的日志输出级别扩展为Debug级别：可以打印出SQL文
+    com.lding.jk.mapper: debug

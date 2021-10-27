@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lding.jk.mapper.DictItemMapper" >
+  <resultMap id="BaseResultMap" type="com.lding.jk.pojo.po.DictItem" >
+    <id column="id" property="id" jdbcType="SMALLINT" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="value" property="value" jdbcType="VARCHAR" />
+    <result column="sn" property="sn" jdbcType="SMALLINT" />
+    <result column="type_id" property="typeId" jdbcType="SMALLINT" />
+    <result column="disabled" property="disabled" jdbcType="TINYINT" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short" >
+    delete from dict_item
+    where id = #{id,jdbcType=SMALLINT}
+  </delete>
+  <insert id="insert" parameterType="com.lding.jk.pojo.po.DictItem" >
+    insert into dict_item (id, name, value, 
+      sn, type_id, disabled
+      )
+    values (#{id,jdbcType=SMALLINT}, #{name,jdbcType=VARCHAR}, #{value,jdbcType=VARCHAR}, 
+      #{sn,jdbcType=SMALLINT}, #{typeId,jdbcType=SMALLINT}, #{disabled,jdbcType=TINYINT}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lding.jk.pojo.po.DictItem" >
+    update dict_item
+    set name = #{name,jdbcType=VARCHAR},
+      value = #{value,jdbcType=VARCHAR},
+      sn = #{sn,jdbcType=SMALLINT},
+      type_id = #{typeId,jdbcType=SMALLINT},
+      disabled = #{disabled,jdbcType=TINYINT}
+    where id = #{id,jdbcType=SMALLINT}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Short" >
+    select id, name, value, sn, type_id, disabled
+    from dict_item
+    where id = #{id,jdbcType=SMALLINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, name, value, sn, type_id, disabled
+    from dict_item
+  </select>
+</mapper>

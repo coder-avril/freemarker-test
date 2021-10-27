@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lding.jk.mapper.ExamPlaceCourseMapper" >
+  <resultMap id="BaseResultMap" type="com.lding.jk.pojo.po.ExamPlaceCourse" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="DECIMAL" />
+    <result column="type" property="type" jdbcType="TINYINT" />
+    <result column="intro" property="intro" jdbcType="VARCHAR" />
+    <result column="video" property="video" jdbcType="VARCHAR" />
+    <result column="cover" property="cover" jdbcType="VARCHAR" />
+    <result column="place_id" property="placeId" jdbcType="SMALLINT" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from exam_place_course
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.lding.jk.pojo.po.ExamPlaceCourse" >
+    insert into exam_place_course (id, create_time, name, 
+      price, type, intro, 
+      video, cover, place_id
+      )
+    values (#{id,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{name,jdbcType=VARCHAR}, 
+      #{price,jdbcType=DECIMAL}, #{type,jdbcType=TINYINT}, #{intro,jdbcType=VARCHAR}, 
+      #{video,jdbcType=VARCHAR}, #{cover,jdbcType=VARCHAR}, #{placeId,jdbcType=SMALLINT}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lding.jk.pojo.po.ExamPlaceCourse" >
+    update exam_place_course
+    set create_time = #{createTime,jdbcType=TIMESTAMP},
+      name = #{name,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DECIMAL},
+      type = #{type,jdbcType=TINYINT},
+      intro = #{intro,jdbcType=VARCHAR},
+      video = #{video,jdbcType=VARCHAR},
+      cover = #{cover,jdbcType=VARCHAR},
+      place_id = #{placeId,jdbcType=SMALLINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, create_time, name, price, type, intro, video, cover, place_id
+    from exam_place_course
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, create_time, name, price, type, intro, video, cover, place_id
+    from exam_place_course
+  </select>
+</mapper>
